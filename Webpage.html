@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>example</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.12/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="css\Web.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+  
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        /* white-space: nowrap; */
+        /* -webkit-overflow-scrolling: touch; */
+      }
+    </style>
+
+
+ 
+  </head>
+  <body>
+    
+<div class="site-header sticky-top py-1">
+  <nav class="container d-flex flex-column flex-md-row justify-content-between">
+    <a class="py-2" href="#" aria-label="Product">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto" role="img" viewBox="0 0 24 24"><title>Product</title><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/></svg>
+    </a>
+    <a class="py-2 d-none d-md-inline-block" href="#header" id="scroll_move">Tour</a>
+    <a class="py-2 d-none d-md-inline-block" href="#line">Product</a>
+    <a class="py-2 d-none d-md-inline-block" href="#bar">Features</a>
+    <a class="py-2 d-none d-md-inline-block" href="#">Enterprise</a>
+  </nav>
+</div>
+
+<main>
+  
+  <div class="position-relative overflow-hidden p-md-5 m-md-3 text-center" id="header"> 
+    <h1 class="description">취업률 현황판</h1>
+    <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden" id="line">
+      <div class="my-3 py-3">
+        <h2 class="display-5">취업율 현황</h2>
+        <p class="lead">총 졸업자: 543,421명,	총 취업자: 360,713명	총 취업률 평균: 66.37%</p>
+        <div class="chart-outline">
+          <div style="position: relative; height:60vh; width:70vw">
+            <canvas id="lineChart"></canvas>
+        <script>
+        var ctx = document.getElementById("lineChart").getContext('2d');
+        var lineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ["2014","2015", "2016", "2017", "2018"],
+                datasets: [
+                  {
+                    label: '년간 취업률',
+                    data: [66.40, 67.48, 55.73, 67.76, 70.55],
+                    fill:false,
+                    borderColor: 'rgba(200, 70, 50, 1)',
+                    borderWidth: 5
+            },{
+            label: '총 취업률 평균',
+                    data: [66.37, 66.37, 66.37, 66.37,66.37],
+                    fill:false,
+                    borderColor: 'rgba(0, 70, 250, 1)',
+                    borderWidth: 5
+            }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+        });
+        </script>
+        </div>
+      </div> 
+      </div>
+    </div>
+    <div class="bg-light pt-md-5 px-md-5 text-center overflow-hidden" id="bar">
+        <h2 class="display-5">주요학과 취업률</h2>
+        <p class="lead">* 취업률 계산 = (취업자수/(졸업자수-기타요인))</p>
+        <div class="chart-outline">
+            <div style="position: relative; height:60vh; width:70vw">
+              <canvas id="myChart"></canvas>
+          <script>
+          var ctx = document.getElementById("myChart").getContext('2d');
+          var myChart = new Chart(ctx, {
+              type: 'bar',
+              data: {
+                  labels: ["간호학과","기계과", "전자과", "컴퓨터,소프트웨어과", "호텔과", "미디어과", "화학과", "중국어과", "영어과", "음악과"],
+                  datasets: [{
+                      label: '주요학과 취업률',
+                      data: [86.26, 72.55, 71.19, 66.97, 64.09, 61.11, 60.64, 57.39, 56.50,47.09],
+                      backgroundColor: [
+                          'rgba(255, 99, 132, 0.15)',
+                          'rgba(54, 162, 235, 0.2)',
+                          'rgba(255, 206, 86, 0.2)',
+                          'rgba(75, 192, 192, 0.2)',
+                          'rgba(153, 102, 255, 0.2)',
+                          'rgba(255, 159, 64, 0.2)',
+                          'rgba(0, 0, 0, 0.2)',
+                          'rgba(64, 242, 0, 0.2)',
+                          'rgba(197, 242, 255, 0.7)',
+                          'rgba(255, 209, 214, 0.7)'
+                      ],
+                      borderColor: [
+                          'rgba(255,99,132,1)',
+                          'rgba(54, 162, 235, 1)',
+                          'rgba(255, 206, 86, 1)',
+                          'rgba(75, 192, 192, 1)',
+                          'rgba(153, 102, 255, 1)',
+                          'rgba(255, 159, 64, 1)',
+                          'rgba(0, 0, 0, 1)',
+                          'rgba(64, 202, 0, 1)',
+                          'rgba(197, 210, 255, 1)',
+                          'rgba(255, 170, 214, 1)'
+                      ],
+                      borderWidth: 1
+                  }]
+              },      
+              options: {
+                  maintainAspectRatio: false,
+                legend: {
+        	          display: false
+                },
+                  scales: {
+                      yAxes: [{
+                          ticks: {
+                              beginAtZero:true
+                          }
+                      }]
+                  }
+              }
+          });
+          </script>
+          </div>
+        </div> 
+    </div>
+  
+  </div>
+
+  <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+    <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+      <div class="my-3 p-3">
+        <h2 class="display-5">Another headline</h2>
+        <p class="lead">And an even wittier subheading.</p>
+      </div>
+      <div class="bg-body shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+    </div>
+    <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+      <div class="my-3 py-3">
+        <h2 class="display-5">Another headline</h2>
+        <p class="lead">And an even wittier subheading.</p>
+      </div>
+      <div class="bg-body shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+    </div>
+  </div>
+</main>
+
+<div class="container">
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <div class="col-md-4 d-flex align-items-center">
+      <span class="mb-3 mb-md-0 text-muted">&copy; 2022 Kim, Ui Hyun. All Rights Reserved</span>
+    </div>
+    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+      <li class="ms-3"><a class="text-muted" href="https://github.com/dmlgus0458"target="_blank"><svg class="bi" width="24" height="24"><use xlink:href="#github"/></svg></a></li>
+      <li class="ms-3"><a class="text-muted" href="https://www.google.co.kr/" target="_blank"><svg class="bi" width="24" height="24"><use xlink:href="#google"/></svg></a></li>
+      <li class="ms-3"><a class="text-muted" href="https://steamcommunity.com/profiles/76561198402477561/"target="_blank"><svg class="bi" width="24" height="24"><use xlink:href="#steam"/></svg></a></li>
+    </ul>
+  </footer>
+</div>
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="github" viewBox="0 0 16 16">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>    </symbol>
+  <symbol id="steam" viewBox="0 0 16 16">
+      <path d="M.329 10.333A8.01 8.01 0 0 0 7.99 16C12.414 16 16 12.418 16 8s-3.586-8-8.009-8A8.006 8.006 0 0 0 0 7.468l.003.006 4.304 1.769A2.198 2.198 0 0 1 5.62 8.88l1.96-2.844-.001-.04a3.046 3.046 0 0 1 3.042-3.043 3.046 3.046 0 0 1 3.042 3.043 3.047 3.047 0 0 1-3.111 3.044l-2.804 2a2.223 2.223 0 0 1-3.075 2.11 2.217 2.217 0 0 1-1.312-1.568L.33 10.333Z"/> 
+      <path d="M4.868 12.683a1.715 1.715 0 0 0 1.318-3.165 1.705 1.705 0 0 0-1.263-.02l1.023.424a1.261 1.261 0 1 1-.97 2.33l-.99-.41a1.7 1.7 0 0 0 .882.84Zm3.726-6.687a2.03 2.03 0 0 0 2.027 2.029 2.03 2.03 0 0 0 2.027-2.029 2.03 2.03 0 0 0-2.027-2.027 2.03 2.03 0 0 0-2.027 2.027Zm2.03-1.527a1.524 1.524 0 1 1-.002 3.048 1.524 1.524 0 0 1 .002-3.048Z"/>
+  </symbol>
+  <symbol id="google" viewBox="0 0 16 16">
+      <path d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z"/>    </symbol>
+</svg>
+
+
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+      
+  </body>
+</html>

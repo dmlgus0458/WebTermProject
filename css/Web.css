@@ -1,0 +1,33 @@
+.chart-outline {
+  margin: auto;
+  width:1300px; height:1100px;
+}
+.description{
+  height: 600px;
+}
+/*
+ * 네비바부분
+ */
+
+.site-header {
+  background-color: rgba(170, 161, 161, 0.7);
+}
+.site-header a {
+  color: #ffffff;
+  transition: color .15s ease-in-out;
+}
+.site-header a:hover {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+
+
+
+.flex-equal > * {
+  flex: 1;
+}
+@media (min-width: 768px) {
+  .flex-md-equal > * {
+    flex: 1;
+  }
+}
