@@ -17,16 +17,16 @@
       let tyear = 2018;                   /* 현재 화면에 선택된 년도 값을 가져와야 함 */
       univ_data = new Array();
       function showData() {
-           console.log("tyear", tyear)
+           //console.log("tyear", tyear)
         let j = 1
            for (let i=0; i<univ_data.length ; i++){
           if(univ_data[i].emp_m > 10 && univ_data[i].emp_f > 10){
             $("#result_table").append("<tr>")
-      //			$("#result_table").append("<td width='100' align='center'  bgcolor='#F8F8F8'><font size=2>"+(i+1)+"</font></td>")
+            //$("#result_table").append("<td width='100' align='center'  bgcolor='#F8F8F8'><font size=2>"+(i+1)+"</font></td>")
             $("#result_table").append("<td width='100' align='center'  bgcolor='#F8F8F8'><font size=2>"+(j)+"</font></td>")
              let univ_name = univ_data[i].univ_name;
              let myurl = "<td width='600' align='center'  bgcolor='#F8F8F8'><font size=2>"+univ_name+"</font></a></td>"
-               console.log("myurl", myurl)
+               //console.log("myurl", myurl)
             $("#result_table").append(myurl)
             $("#result_table").append("<td width='150' align='center' bgcolor='#F8F8F8' ><font size=2>"+univ_data[i].grad_m+"</font></td>")
             $("#result_table").append("<td width='150' align='center' bgcolor='#F8F8F8'><font size=2>"+univ_data[i].emp_m+"</font></td>")
@@ -49,7 +49,7 @@
         await fetch("https://openapi.gg.go.kr/Grduemplymtuniv?KEY=b551ce02e0d74dec8863c6b69a4a056e&Type=json&pindex=1&pSize=10")
           .then((response) => response.json())	
           .then((json) => {
-            console.log(json.Grduemplymtuniv[0].head[0].list_total_count); 
+            //console.log(json.Grduemplymtuniv[0].head[0].list_total_count); 
             total_count = json.Grduemplymtuniv[0].head[0].list_total_count;
             sample_data = json;
           })
@@ -67,9 +67,9 @@
         }
         /* Promise.all(url_array).then((res) => console.log("res: ",res)) */
         sort_data(full_data);
-        console.log(full_data);
+        //console.log(full_data);
         get_univ();
-        console.log(univ_data);
+        //console.log(univ_data);
         showData();
       }	
       // 학교/학과별 취업률 데이터에서 학교별로 취업률 취합하고 정렬하기
@@ -84,8 +84,8 @@
           if(full_data[i].STD_YY == tyear) {
             if(univ_name != full_data[i].SCHOOL_NM) {
               if((grad_m+grad_f) > 0) {
-              console.log(i)
-              console.log(univ_name)
+              //console.log(i)
+              //console.log(univ_name)
               univ = new Array();
               univ.univ_name = univ_name;
               univ.grad_m = grad_m;
@@ -130,7 +130,7 @@
         }
         let univd = new Array();
         sort_univ(univ_data);
-        console.log(univ_data);
+        //console.log(univ_data);
       }   
       // OpenAPI에서 수집한 학교/학과별 데이터를 학교 순서로 정렬하기
       function sort_data(data){
@@ -155,7 +155,7 @@
           } 
         )
         
-        console.log("정렬후 데이터: ",data)
+        //console.log("정렬후 데이터: ",data)
       }
       
       // 학교별 취업률 데이터를 취업률 순서로 정렬하기
@@ -169,7 +169,7 @@
             return 0
           }
         })
-        console.log(univ_data)
+        //(univ_data)
       }
       
       window.onpaint = get_data();
