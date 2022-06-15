@@ -1,6 +1,7 @@
 /* body */
 body{
   background-color: #f1f3f5;
+  text-align: left;
 }
 /* navbar */
 .site-header {
@@ -79,6 +80,13 @@ body{
 .stxt{
   padding-bottom: 30px;
   opacity: 0.5;
+}
+.info{
+  font-family: "headfont" ;
+}
+.contact{
+  font-family: "txtfont" ;
+  font-size: 20px;
 }
 @media (min-width: 768px) {
   .flex-md-equal > * {
