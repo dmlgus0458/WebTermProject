@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.12/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="css\Web.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chart.piecelabel.js/0.15.0/Chart.PieceLabel.min.js" integrity="sha512-pLEKa6g1uR205lfWRPuxwUa/aw1Yge1jOCvYr5WCL68gh3FoLi0eqMsIEtCvIXgZY0LwiRoMgiTfrpX7pK1HFA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   </head>
 <body> 
   <!-- 상단 네비게이션바 -->
@@ -15,7 +16,8 @@
     <a class="py-2" href="#" aria-label="header">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto" role="img" viewBox="0 0 24 24"><title>Product</title><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/></svg>
     </a>
-    <a class="py-2  d-md-inline-block" href="#headdig" id="scroll_move">전체 현황</a>
+    <a class="py-2  d-md-inline-block" href="#dashboard" id="scroll_move">전체 현황</a>
+    <a class="py-2  d-md-inline-block" href="#pie">대학비율 현황</a>
     <a class="py-2  d-md-inline-block" href="#line">취업률 현황</a>
     <a class="py-2  d-md-inline-block" href="#bar">주요학과 현황</a>
     <a class="py-2  d-md-inline-block" href="#info">정보</a>
@@ -28,7 +30,7 @@
 </div>
 <!-- 상단 대쉬보드 -->
 <div class="top-container"> 
-  <div class="overflow-hidden m-md-3 text-center" id="headdig"> 
+  <div class="overflow-hidden m-md-3 text-center" id="dashboard"> 
     <h1 class="boardhead top">전체 대학</h1>
     <div class="row dashboard">
         <div class="col-6 col-md-3 text-center">
@@ -117,9 +119,50 @@
   <p class="head_infotxt">*취업률계산방식<br>취업률(%) = (취업자수/(졸업자수-기타요인))x100 (*소수점 둘째자리 반올림)</p> 
   </div> 
 </div>
-<!-- 그래프1 -->
+<!-- piechart -->
+<div class="chart-outline">
+  <div class="m-md-3 text-center" id="pie">
+      <h2 class="status">대학 종류 구분별 비율</h2>
+      <p class="stxt">*기타대학구분: 기능대학: 10,507명 , 산업대학: 10,289명 , 교육대학: 2,951명 , 전문대학(4년제): 939명 , 각종대학(전문): 40명</p>
+  </div>
+  <div class="col-md-12 pr-md-5" style="position: relative; height:50vh; width:90vw">
+    <canvas id="pieChart"></canvas>
+  </div>
+</div>
+<script>
+var ctx = document.getElementById("pieChart").getContext('2d');
+var lineChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: ["일반대학", "전문대학(2년제)", "전문대학(3년제)"  , "기타대학"],
+        datasets: [
+          {
+            label: '대학 종류 구분별 비율',
+            data: [183051, 199015, 185749,  24725],
+            backgroundColor: [
+                          'rgba(255, 99, 132, 0.7)',
+                          'rgba(54, 162, 235, 0.8)',
+                          'rgba(255, 206, 86, 0.8)',
+                          'rgba(75, 220, 192, 0.8)'
+                      ],
+    }]
+    },
+    options: {
+      responsive: true,
+                legend: false,
+                maintainAspectRatio : false,
+                pieceLabel: {
+                  mode:"label",
+                  position:"outside",
+                  fontSize: 12,
+                  fontStyle: 'bold'
+        }
+    }
+});
+</script>
+<!-- linechart -->
         <div class="chart-outline">
-          <div class="overflow-hidden m-md-3 text-center" id="line">
+          <div class="m-md-3 text-center" id="line">
               <h2 class="status">년도별 취업율 현황 및 총 취업률과 비교</h2>
               <p class="stxt">총졸업자: 592,541명 , 2014년: 89,196명 , 2015년: 97,200명 , 2016년: 96,450명 , 2017년: 93,731명 , 2018년: 215,964명</p>
           </div>
@@ -160,21 +203,21 @@
             }
         });
         </script>
-  <!-- 그래프2 -->
-          <div class="chart-outline">
-    <div class="pt-md-5 px-md-5 text-center" id="bar">
+  <!-- barchart -->
+  <div class="chart-outline">
+    <div class="m-md-3 text-center" id="bar">
         <h2 class="status">주요학과 취업률</h2>
-        <p class="stxt">*졸업생 1만명 부근의 학과 위주로 조사<br>간호학과 : 20,008명 , 기계과 : 22,725명 , 전자과 : 19,700명 , 컴퓨터,소프트웨어과 : 22,957명 , 호텔과: 23.086명<br> , 
+        <p class="stxt">*졸업생 1만명 부근의 학과 위주로 조사<br>간호학과 : 20,008명 , 기계과 : 22,725명 , 전자과 : 19,700명 , 컴퓨터,소프트웨어과 : 22,957명 , 호텔과: 23.086명 , 
           미디어과 : 9,100명 , 화학과 : 8,169명 , 중국어과 : 6,261명 , 영어과 : 10,138명 , 음악과 : 8,442명
         </p>
             <div class="col-md-12 pr-md-5" style="position: relative; height:50vh; width:90vw">
-              <canvas id="myChart"></canvas>
+              <canvas id="barChart"></canvas>
             </div>
         </div>
     </div>
   </div>
           <script>
-          var ctx = document.getElementById("myChart").getContext('2d');
+          var ctx = document.getElementById("barChart").getContext('2d');
           var myChart = new Chart(ctx, {
               type: 'bar',
               data: {
