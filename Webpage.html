@@ -132,7 +132,7 @@
       <h2 class="status">대학 종류 구분별 비율</h2>
       <p class="stxt">*기타대학구분: 기능대학: 10,507명 , 산업대학: 10,289명 , 교육대학: 2,951명 , 전문대학(4년제): 939명 , 각종대학(전문): 40명</p>
   </div>
-  <div class="col-md-12" style="position: relative; height:40vh; width:90vw">
+  <div class="col-md-12" style="position: relative; height:50vh; width:90vw">
     <canvas id="pieChart"></canvas>
   </div>
 </div>
@@ -142,11 +142,11 @@
 var lineChart = new Chart(ctx, {
     type: 'pie',
     data: {
-        labels: ["일반대학", "전문대학(2년제)", "전문대학(3년제)"  , "기타대학"],
+        labels: ["전문대학(3년제)" , "전문대학(2년제)", "일반대학" , "기타대학"],
         datasets: [
           {
             label: '대학 종류 구분별 비율',
-            data: [183051, 199015, 185749,  24725],
+            data: [185749, 199015, 183051, 24725],
             backgroundColor: [
                           'rgba(255, 99, 132, 0.7)',
                           'rgba(54, 162, 235, 0.8)',
@@ -157,12 +157,10 @@ var lineChart = new Chart(ctx, {
     },
     options: {
       responsive: true,
-                legend: false,
                 maintainAspectRatio : false,
                 pieceLabel: {
-                  mode:"label",
-                  position:"outside",
-                  fontSize: 11,
+                  position:"inside",
+                  fontSize: 12,
                   fontStyle: 'bold'
         }
     }
@@ -176,7 +174,7 @@ var lineChart = new Chart(ctx, {
           <h2 class="status">년도별 취업율 현황 및 총 취업률과 비교</h2>
           <p class="stxt">총졸업자: 592,541명 , 2014년: 89,196명 , 2015년: 97,200명 , 2016년: 96,450명 , 2017년: 93,731명 , 2018년: 215,964명</p>
     </div>
-       <div class="col-md-12 " style="position: relative; height:40vh; width:90vw">
+       <div class="col-md-12" style="position: relative; height:45vh; width:90vw">
          <canvas id="lineChart"></canvas>
        </div>
     </div>
@@ -223,7 +221,7 @@ var lineChart = new Chart(ctx, {
         <p class="stxt">*졸업생 1만명 부근의 학과 위주로 조사<br>간호학과 : 20,008명 , 기계과 : 22,725명 , 전자과 : 19,700명 , 컴퓨터,소프트웨어과 : 22,957명 , 호텔과: 23.086명 , 
           미디어과 : 9,100명 , 화학과 : 8,169명 , 중국어과 : 6,261명 , 영어과 : 10,138명 , 음악과 : 8,442명
         </p>
-            <div class="col-md-12 " style="position: relative; height:50vh; width:90vw">
+            <div class="col-md-12" style="position: relative; height:45vh; width:90vw">
               <canvas id="barChart"></canvas>
             </div>
         </div>

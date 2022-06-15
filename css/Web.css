@@ -18,6 +18,7 @@ body{
 /* top image */
 img{
   width: 100%;
+  margin-bottom: 100px;
 }
 .p-hide{
   display: none;
@@ -36,10 +37,10 @@ img{
   .m-hide {
     display: none;    }
   }
-/* top txt */
+/* chart out txt */
 .outtxt{
   text-align: center;
-  margin-top: 50px;
+  margin-top: 100px;
   padding-top: 50px;
   font-family: "headfont";
 }
@@ -54,7 +55,7 @@ img{
   background-color:white;
   border-radius:20px;
   margin-top:50px;
-  margin-bottom:200px;
+  margin-bottom:50px;
   margin-left: auto;
   margin-right: auto;
   padding-top:20px;
@@ -95,7 +96,7 @@ img{
   margin-left: auto;
   margin-right: auto;
   padding-top:20px;
-  padding-bottom:10px;
+  padding-bottom:50px;
   border:3px solid #dee2e6
 }
 .txt{
@@ -113,6 +114,7 @@ img{
 }
 /* footer */
 .info{
+  margin-top: 50px;
   font-family: "headfont" ;
 }
 .contact{
