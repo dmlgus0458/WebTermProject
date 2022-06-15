@@ -1,8 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="utf-8">
+    <META http-equiv="content-Type" content="text/html; charset=euc-kr">
     <title>JobStatus</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.12/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="css\Web.css">
@@ -10,6 +11,169 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chart.piecelabel.js/0.15.0/Chart.PieceLabel.min.js" integrity="sha512-pLEKa6g1uR205lfWRPuxwUa/aw1Yge1jOCvYr5WCL68gh3FoLi0eqMsIEtCvIXgZY0LwiRoMgiTfrpX7pK1HFA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="icon" type="image/png" sizes="32x32" href="./image/favicon-32x32.jpg">
     <link rel="icon" type="image/png" sizes="16x16" href="./image/favicon-16x16.jpg">
+<!-- Open API script -->
+    <script>
+      let full_data = new Array();
+      let tyear = 2018;                   /* 현재 화면에 선택된 년도 값을 가져와야 함 */
+      univ_data = new Array();
+      function showData() {
+           console.log("tyear", tyear)
+        let j = 1
+           for (let i=0; i<univ_data.length ; i++){
+          if(univ_data[i].emp_m > 10 && univ_data[i].emp_f > 10){
+            $("#result_table").append("<tr>")
+      //			$("#result_table").append("<td width='100' align='center'  bgcolor='#F8F8F8'><font size=2>"+(i+1)+"</font></td>")
+            $("#result_table").append("<td width='100' align='center'  bgcolor='#F8F8F8'><font size=2>"+(j)+"</font></td>")
+             let univ_name = univ_data[i].univ_name;
+             let myurl = "<td width='600' align='center'  bgcolor='#F8F8F8'><font size=2>"+univ_name+"</font></a></td>"
+               console.log("myurl", myurl)
+            $("#result_table").append(myurl)
+            $("#result_table").append("<td width='150' align='center' bgcolor='#F8F8F8' ><font size=2>"+univ_data[i].grad_m+"</font></td>")
+            $("#result_table").append("<td width='150' align='center' bgcolor='#F8F8F8'><font size=2>"+univ_data[i].emp_m+"</font></td>")
+            $("#result_table").append("<td width='150' align='center' bgcolor='#F8F8F8'><font size=2>"+univ_data[i].grad_f+"</font></td>")
+            $("#result_table").append("<td width='150' align='center' bgcolor='#F8F8F8'><font size=2>"+univ_data[i].emp_f+"</font></td>")
+            $("#result_table").append("<td width='100' align='center' bgcolor='#F8F8F8'><font size=2>"+(univ_data[i].empRatio*100).toFixed(1)+"%</font></td>")
+            $("#result_table").append("</tr>") 
+            j=j+1 
+            if(j>100) break;
+          }
+           }
+      }
+      // 공공 데이터 OpenAPI로 경기도 대학/학과별 취업률 데이터 가져오기
+      async function get_data()
+      {
+        let sample_data = new Array();
+        let total_count = 0;
+        const urlSearch = "https://openapi.gg.go.kr/Grduemplymtuniv?KEY=b551ce02e0d74dec8863c6b69a4a056e&Type=json";
+        let url_array = new Array();
+        await fetch("https://openapi.gg.go.kr/Grduemplymtuniv?KEY=b551ce02e0d74dec8863c6b69a4a056e&Type=json&pindex=1&pSize=10")
+          .then((response) => response.json())	
+          .then((json) => {
+            console.log(json.Grduemplymtuniv[0].head[0].list_total_count); 
+            total_count = json.Grduemplymtuniv[0].head[0].list_total_count;
+            sample_data = json;
+          })
+        inc = 1000
+        for(i = 1; i < (total_count/inc)+1; i=i+1 ) {
+          let tmp_arr = new Array();
+          let url = urlSearch + "&pindex="+i+"&pSize="+inc
+           /* let fetch_str =  fetch(url)
+          .then((response) => response.json())	
+          .then((json) => {tmp_arr = json.Grduemplymtuniv[1].row;}) 
+          url_array.concat(fetch_str); */
+          await fetch(url)
+          .then((response) => response.json())	
+          .then((json) => {tmp_arr = json.Grduemplymtuniv[1].row; full_data = full_data.concat(tmp_arr);})
+        }
+        /* Promise.all(url_array).then((res) => console.log("res: ",res)) */
+        sort_data(full_data);
+        console.log(full_data);
+        get_univ();
+        console.log(univ_data);
+        showData();
+      }	
+      // 학교/학과별 취업률 데이터에서 학교별로 취업률 취합하고 정렬하기
+      function get_univ(){
+        univ_data = new Array()
+        let grad_m = 0
+        let grad_f = 0
+        let emp_m = 0;
+        let emp_f = 0
+        let univ_name = full_data[0].SCHOOL_NM
+        for(i in full_data) {
+          if(full_data[i].STD_YY == tyear) {
+            if(univ_name != full_data[i].SCHOOL_NM) {
+              if((grad_m+grad_f) > 0) {
+              console.log(i)
+              console.log(univ_name)
+              univ = new Array();
+              univ.univ_name = univ_name;
+              univ.grad_m = grad_m;
+              univ.grad_f = grad_f;
+              univ.emp_m = emp_m;
+              univ.emp_f = emp_f;
+              univ.empRatio = ((emp_m+emp_f)/(grad_m+grad_f))
+              univ_data.push({...univ});
+              grad_m = 0;
+              grad_f = 0;
+              emp_m = 0;
+              emp_f = 0;
+              univ_name = full_data[i].SCHOOL_NM
+              } else {
+                univ_name = full_data[i].SCHOOL_NM
+              }
+            }
+            grad_m = grad_m + full_data[i].MALE_GRA_CNT;
+            grad_f = grad_f + full_data[i].FEMALE_GRA_CNT;
+            emp_m = emp_m + full_data[i].HTIR_CONCTN_MALE_EMPLYE_CNT+full_data[i].OVSEA_MALE_EMPLYE_CNT
+              +full_data[i].FARMJ_MALE_ENFLPSN_CNT+full_data[i].INDVDL_CRAT_MALE_ENFLPSN_CNT
+              +full_data[i].PSN1_MALE_FUDR_CNT+full_data[i].MALE_FRLAC_CNT;
+            emp_f = emp_f + full_data[i].HTIR_CONCTN_FEMALE_EMPLYE_CNT+full_data[i].OVSEA_FEMALE_EMPLYE_CNT
+              +full_data[i].FARMJ_FEMALE_ENFLPSN_CNT+full_data[i].INDVDL_CRAT_FEMALE_ENFLPSN_CNT
+              +full_data[i].PSN1_FEMALE_FUDR_CNT+full_data[i].FEMALE_FRLAC_CNT;
+            
+            if ( i == full_data.length - 1) {
+              univ = new Array();
+              univ.univ_name = univ_name;
+              univ.grad_m = grad_m;
+              univ.grad_f = grad_f;
+              univ.emp_m = emp_m;
+              univ.emp_f = emp_f;
+              univ.empRatio = ((emp_m+emp_f)/(grad_m+grad_f))
+              univ_data.push({...univ});
+              grad_m = 0;
+              grad_f = 0;
+              emp_m = 0;
+              emp_f = 0;
+            }
+          }
+        }
+        let univd = new Array();
+        sort_univ(univ_data);
+        console.log(univ_data);
+      }   
+      // OpenAPI에서 수집한 학교/학과별 데이터를 학교 순서로 정렬하기
+      function sort_data(data){
+        data.sort(
+          function (a,b) {
+            /* if (a.STD_YY > a.STD_YY) {
+              return 1;
+            }
+            if (a.STD_YY < a.STD_YY) {
+              return -1;
+            }
+            if(a.STD_YY === b.STD_YY) { */
+            
+              if (a.SCHOOL_NM > b.SCHOOL_NM) {
+                return 1;
+              }
+              if(a.SCHOOL_NM < b.SCHOOL_NM) {
+                return -1;
+              }
+            /* } */
+            return 0;	
+          } 
+        )
+        
+        console.log("정렬후 데이터: ",data)
+      }
+      
+      // 학교별 취업률 데이터를 취업률 순서로 정렬하기
+      function sort_univ(univ_data){
+        univ_data.sort(function(a,b){
+          if(a.empRatio < b.empRatio) {
+            return 1;
+          } else if(a.empRatio > b.empRatio) {
+            return -1;
+          } else {
+            return 0
+          }
+        })
+        console.log(univ_data)
+      }
+      
+      window.onpaint = get_data();
+      </script>	 
   </head>
 <body> 
   <!-- 상단 네비게이션바 -->
@@ -279,6 +443,57 @@ var lineChart = new Chart(ctx, {
               }
           });
           </script>
+<!-- Open API table -->
+<div class="API">  
+  <h2 class="APIhead">취업률 TOP100</h2>
+<div class="APItable">
+<table width="600" border="2"  cellspacing="0" cellpadding="0" align="center">
+	<tr> 
+		<td  align="right"> <br>
+		</td>
+	</tr>
+	<tr> 
+		<td  align="center">
+		<!-- 목록 시작 -->
+			<table width="950"  border="0"  bgcolor="#DDDDDD" cellspacing="0" cellpadding="0">
+				<tr>  
+					<td > 
+						 <table width="950"  border="0" cellspacing="1" cellpadding="0">
+						   <thead height="25">  
+						     	<td width="100" align="center"  bgcolor="#E2EDF0" > 
+						     		<font size=2>순위</font>
+						     	</td>
+						     	<td width="600" align="center"  bgcolor="#E2EDF0" >  
+						     		<font size=2>학교명</font>
+						     	</td>  
+						     	<td width="150" align="center" bgcolor="#E2EDF0" >  
+						     		<font size=2>졸업생수(남)</font>
+						     	</td>  
+						     	<td width="150" align="center" bgcolor="#E2EDF0">  
+						     		<font size=2>취업자수(남)</font>
+						     	</td>  
+						     	<td width="150" align="center" bgcolor="#E2EDF0">  
+						     		 <font size=2>졸업생수(여)</font>
+						     	</td>  
+						     	<td width="150" align="center" bgcolor="#E2EDF0">  
+						     		 <font size=2>취업자수(여)</font>
+						     	</td>  
+						     	<td width="100" align="center" bgcolor="#E2EDF0">  
+						     		<font size=2>취업률</font>
+						     	</td>  
+						 	</thead>
+						 	<tbody id=result_table>
+						   </tbody>
+						</table>
+					</td> 
+				</tr>
+			</table>  
+		<!-- 목록 끝 -->
+		</td>
+	</tr>
+</table>   
+</div>
+</div>
 <!-- youtubelist -->
 <div class="youtube">
   <h2>관련 유튜브 영상</h2>

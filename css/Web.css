@@ -111,6 +111,19 @@ img{
   padding-bottom: 30px;
   opacity: 0.5;
 }
+/* API */
+.APIhead{
+  padding-top: 100px;
+  text-align: center;
+  padding-bottom: 40px;
+  font-family: "headfont";
+  font-size: 40px;
+}
+.APItable{
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color:white;
+}
 /* youtube list */
 .youtube h2{
   text-align: center;
