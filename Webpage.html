@@ -7,18 +7,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.12/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="css\Web.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
   </head>
-  <body> 
+<body> 
+  <!-- 상단 네비게이션바 -->
 <div class="site-header sticky-top py-1">
   <nav class="container d-flex flex-column flex-md-row justify-content-between">
     <a class="py-2" href="#" aria-label="header">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto" role="img" viewBox="0 0 24 24"><title>Product</title><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/></svg>
     </a>
-    <a class="py-2 d-none d-md-inline-block" href="#header" id="scroll_move">전체 현황</a>
-    <a class="py-2 d-none d-md-inline-block" href="#line">취업률 현황</a>
-    <a class="py-2 d-none d-md-inline-block" href="#bar">주요학과 현황</a>
-    <a class="py-2 d-none d-md-inline-block" href="#info">정보</a>
+    <a class="py-2  d-md-inline-block" href="#headdig" id="scroll_move">전체 현황</a>
+    <a class="py-2  d-md-inline-block" href="#line">취업률 현황</a>
+    <a class="py-2  d-md-inline-block" href="#bar">주요학과 현황</a>
+    <a class="py-2  d-md-inline-block" href="#info">정보</a>
   </nav>
 </div>
 <main>
@@ -28,61 +28,102 @@
 </div>
 <!-- 상단 대쉬보드 -->
 <div class="top-container"> 
-  <div class="position-relative overflow-hidden p-md-5 m-md-3 text-center" id="header"> 
-    <h1 class="top1">전체 대학</h1>
-    <div class="row dashboard domestic">
-        <div class="col-4 col-md-4 text-center">
-            <p class="txt">0</p>
+  <div class="overflow-hidden m-md-3 text-center" id="headdig"> 
+    <h1 class="boardhead top">전체 대학</h1>
+    <div class="row dashboard">
+        <div class="col-6 col-md-3 text-center">
+            <p class="txt">592,541명</p>
             <p>졸업자</p>
         </div>
-        <div class="col-4 col-md-4 text-center">
-            <p class="txt">0</p>
+        <div class="col-6 col-md-3 text-center">
+            <p class="txt">360,713명</p>
             <p>취업자</p>
         </div>
-        <div class="col-6 col-md-4 text-center">
-            <p class="txt">0</p>
+        <div class="col-6 col-md-3 text-center">
+            <p class="txt">49,120명</p>
+            <p>기타요인</p>
+        </div>
+        <div class="col-6 col-md-3 text-center">
+            <p class="txt">66.4%</p>
             <p>취업률</p>
         </div>
     </div>  
-    <h1 class="top2">전문 대학원</h1>
-    <div class="row dashboard domestic">
-        <div class="col-4 col-md-4 text-center">
-            <p class="txt">0</p>
-            <p>졸업자</p>
-        </div>
-        <div class="col-4 col-md-4 text-center">
-            <p class="txt">0</p>
-            <p>취업자</p>
-        </div>
-        <div class="col-6 col-md-4 text-center">
-            <p class="txt">0</p>
-            <p>취업률</p>
-        </div>
+    <h1 class="boardhead">일반 대학</h1>
+    <div class="row dashboard">
+      <div class="col-6 col-md-3 text-center">
+        <p class="txt">183,051명</p>
+        <p>졸업자</p>
+    </div>
+    <div class="col-6 col-md-3 text-center">
+        <p class="txt">104,122명</p>
+        <p>취업자</p>
+    </div>
+    <div class="col-6 col-md-3 text-center">
+        <p class="txt">15,777명</p>
+        <p>기타요인</p>
+    </div>
+    <div class="col-6 col-md-3 text-center">
+        <p class="txt">62.2%</p>
+        <p>취업률</p>
+    </div>
     </div>  
-    <h1 class="top3">일반 대학원</h1>
-    <div class="row dashboard domestic">
-        <div class="col-4 col-md-4 text-center">
-            <p class="txt">0</p>
-            <p>졸업자</p>
-        </div>
-        <div class="col-4 col-md-4 text-center">
-            <p class="txt">0</p>
-            <p>취업자</p>
-        </div>
-        <div class="col-6 col-md-4 text-center">
-            <p class="txt">0</p>
-            <p>취업률</p>
-        </div>
-    </div>  
-</div> 
+    <h1 class="boardhead">전문 대학</h1>
+    <div class="row dashboard">
+      <div class="col-6 col-md-3 text-center">
+        <p class="txt">409,490명</p>
+        <p>졸업자</p>
+    </div>
+    <div class="col-6 col-md-3 text-center">
+        <p class="txt">256,591명</p>
+        <p>취업자</p>
+    </div>
+    <div class="col-6 col-md-3 text-center">
+        <p class="txt">33,343명</p>
+        <p>기타요인</p>
+    </div>
+    <div class="col-6 col-md-3 text-center">
+        <p class="txt">68.2%</p>
+        <p>취업률</p>
+    </div>
+    </div>
+    <h1 class="boardhead">일반 대학원</h1>
+    <div class="row dashboard">
+      <div class="col-6 col-md-3 text-center">
+        <p class="txt">15,245명</p>
+        <p>졸업자</p>
+    </div>
+    <div class="col-6 col-md-3 text-center">
+        <p class="txt">9,232명</p>
+        <p>취업자</p>
+    </div>
+    <div class="col-6 col-md-3 text-center">
+        <p class="txt">2,505명</p>
+        <p>기타요인</p>
+    </div>
+    <div class="col-6 col-md-3 text-center">
+        <p class="txt">72.5%</p>
+        <p>취업률</p>
+    </div>
+    </div> 
+    <p class="head_info">
+    <svg class="head_svg" width="50" height="50" viewBox="0 2 25 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" d="M10 17a7 7 0 100-14 7 7 0 000 14zm8-7a8 8 0 11-16 0 8 8 0 0116 0z" clip-rule="evenodd"></path>
+      <path d="M10.93 8.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533l1.002-4.705z"></path>
+      <circle cx="10" cy="6.5" r="1"></circle>
+    </svg>
+    <span class="head_svgtxt">용어 설명</span>
+  </p>
+  <p class="head_infotxt">*기타요인이란?<br>남녀진학자/취업불가수, 입대자수 , 외국인유학생수 , 건강보험직장가입제외수를 합친것</p>
+  <p class="head_infotxt">*취업률계산방식<br>취업률(%) = (취업자수/(졸업자수-기타요인))x100 (*소수점 둘째자리 반올림)</p> 
+  </div> 
 </div>
 <!-- 그래프1 -->
         <div class="chart-outline">
-          <div class="me-md-3 pt- px-3 pt-md-5 px-md-5 text-center " id="line">
-              <h2 class="status">취업율 현황</h2>
-              <p class="stxt">총 졸업자: 543,421명,	총 취업자: 360,713명	총 취업률 평균: 66.37%</p>
+          <div class="overflow-hidden m-md-3 text-center" id="line">
+              <h2 class="status">년도별 취업율 현황 및 총 취업률과 비교</h2>
+              <p class="stxt">총졸업자: 592,541명 , 2014년: 89,196명 , 2015년: 97,200명 , 2016년: 96,450명 , 2017년: 93,731명 , 2018년: 215,964명</p>
           </div>
-          <div class="col-md-12 pr-md-5" style="position: relative; height:60vh; width:60vw">
+          <div class="col-md-12 pr-md-5" style="position: relative; height:50vh; width:90vw">
             <canvas id="lineChart"></canvas>
           </div>
         </div>
@@ -95,13 +136,13 @@
                 datasets: [
                   {
                     label: '년간 취업률',
-                    data: [66.40, 67.48, 55.73, 67.76, 70.55],
+                    data: [66.4, 67.5, 55.7, 67.8, 70.6],
                     fill:false,
                     borderColor: 'rgba(200, 70, 50, 1)',
                     borderWidth: 5
             },{
             label: '총 취업률 평균',
-                    data: [66.37, 66.37, 66.37, 66.37,66.37],
+                    data: [66.4, 66.4, 66.4, 66.4,66.4],
                     fill:false,
                     borderColor: 'rgba(0, 70, 250, 1)',
                     borderWidth: 5
@@ -123,8 +164,10 @@
           <div class="chart-outline">
     <div class="pt-md-5 px-md-5 text-center" id="bar">
         <h2 class="status">주요학과 취업률</h2>
-        <p class="stxt">* 취업률 계산 = (취업자수/(졸업자수-기타요인))</p>
-            <div class="col-md-12 pr-md-5" style="position: relative; height:60vh; width:60vw">
+        <p class="stxt">*졸업생 1만명 부근의 학과 위주로 조사<br>간호학과 : 20,008명 , 기계과 : 22,725명 , 전자과 : 19,700명 , 컴퓨터,소프트웨어과 : 22,957명 , 호텔과: 23.086명<br> , 
+          미디어과 : 9,100명 , 화학과 : 8,169명 , 중국어과 : 6,261명 , 영어과 : 10,138명 , 음악과 : 8,442명
+        </p>
+            <div class="col-md-12 pr-md-5" style="position: relative; height:50vh; width:90vw">
               <canvas id="myChart"></canvas>
             </div>
         </div>
@@ -138,7 +181,7 @@
                   labels: ["간호학과","기계과", "전자과", "컴퓨터,소프트웨어과", "호텔과", "미디어과", "화학과", "중국어과", "영어과", "음악과"],
                   datasets: [{
                       label: '주요학과 취업률',
-                      data: [86.26, 72.55, 71.19, 66.97, 64.09, 61.11, 60.64, 57.39, 56.50,47.09],
+                      data: [86.3, 72.6, 71.2, 67, 64.1, 61.1, 60.6, 57.4, 56.5,47.1],
                       backgroundColor: [
                           'rgba(255, 99, 132, 0.15)',
                           'rgba(54, 162, 235, 0.2)',

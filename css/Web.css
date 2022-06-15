@@ -1,8 +1,10 @@
+/* body */
 body{
-  background-color: #dee2e6;
+  background-color: #f1f3f5;
 }
+/* navbar */
 .site-header {
-  background-color: rgba(170, 161, 161, 0.7);
+  background-color: rgba(141, 129, 129, 0.7);
 }
 .site-header a {
   color: #ffffff;
@@ -12,50 +14,85 @@ body{
   color: rgb(0, 0, 0);
   text-decoration: none;
 }
-@media (min-width: 768px) {
-  .flex-md-equal > * {
-    flex: 1;
+/* top diagram */
+@media (min-width: 768px){
+  .top-container , .chart-outline {
+    max-width: 1320px;
   }
 }
 .top-container {
+  width: 100%;
   background-color:white;
-  border-radius:10px;
-  margin-top:200px;
+  border-radius:20px;
+  margin-top:100px;
   margin-bottom:100px;
-  margin-left: 300px;
-  margin-right: 300px;
-  padding-top:10px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top:20px;
   padding-bottom:10px;
   border:3px solid #dee2e6
 }
+.boardhead{
+  margin-top: 30px;
+  font-family: "headfont";
+}
+.boardhead.top{
+  margin-top: 0px;
+}
+.head_info{
+  padding-top: 50px;
+}
+.head_svgtxt{
+  font-size: 28px;
+  font-family: "txtfont";
+}
+.head_infotxt{
+  margin-left: 10px;
+  margin-top: 30px;
+  font-size: 20px;
+  font-family: "txtfont";
+}
 .chart-outline{ 
-  overflow: hidden;
+  width: 100%;
   background-color:white;
-  border-radius:10px;
-  margin-top:200px;
+  border-radius:20px;
+  margin-top:100px;
   margin-bottom:100px;
-  margin-left: 300px;
-  margin-right: 300px;
-  padding-top:0px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top:20px;
   padding-bottom:10px;
-  padding-left: 30px;
-  border:1px solid #dee2e6;
-}
-.top2{
-  margin-top: 100px;
-}
-.top3{
-  margin-top: 100px;
+  border:3px solid #dee2e6
 }
 .txt{
-  margin-top: 100px;
+  margin-top: 10px;
+  font-size: 30px;
+  font-family: sans-serif;
 }
 .description{
   height: 600px;
 }
 .status{
   padding-bottom: 40px;
+  font-family: "headfont";
 }
 .stxt{
   padding-bottom: 30px;
+  opacity: 0.5;
 }
+@media (min-width: 768px) {
+  .flex-md-equal > * {
+    flex: 1;
+  }
+}
+@font-face {
+  src : url("../fonts/NOTO220BD_BGI.ttf");
+  font-family: "headfont" ;
+}
+@font-face {
+  src : url("../fonts/BMJUA_ttf.ttf");
+  font-family: "txtfont" ;
+}
+
+
+
