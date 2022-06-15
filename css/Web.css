@@ -15,7 +15,28 @@ body{
   color: rgb(0, 0, 0);
   text-decoration: none;
 }
-/* top diagram */
+/* top image */
+img{
+  width: 100%;
+}
+.p-hide{
+  display: none;
+}
+@media screen and (max-width: 768px){
+.topimagearea {
+  background: url(../image/top_imageM.jpg)  no-repeat center center;
+  background-size: cover;
+  }
+}
+@media (max-width: 768px){
+  .p-hide {
+    display: block !important;}
+  }
+@media (max-width: 768px){
+  .m-hide {
+    display: none;    }
+  }
+/* dashboard */
 @media (min-width: 768px){
   .top-container , .chart-outline {
     max-width: 1320px;
@@ -53,6 +74,7 @@ body{
   font-size: 20px;
   font-family: "txtfont";
 }
+/* chart */
 .chart-outline{ 
   width: 100%;
   background-color:white;
@@ -70,9 +92,6 @@ body{
   font-size: 30px;
   font-family: sans-serif;
 }
-.description{
-  height: 600px;
-}
 .status{
   padding-bottom: 40px;
   font-family: "headfont";
@@ -81,6 +100,7 @@ body{
   padding-bottom: 30px;
   opacity: 0.5;
 }
+/* footer */
 .info{
   font-family: "headfont" ;
 }
@@ -93,6 +113,7 @@ body{
     flex: 1;
   }
 }
+/* font */
 @font-face {
   src : url("../fonts/NOTO220BD_BGI.ttf");
   font-family: "headfont" ;

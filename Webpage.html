@@ -2,12 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>JobBoard</title>
+    <title>JobStatus</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.12/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="css\Web.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chart.piecelabel.js/0.15.0/Chart.PieceLabel.min.js" integrity="sha512-pLEKa6g1uR205lfWRPuxwUa/aw1Yge1jOCvYr5WCL68gh3FoLi0eqMsIEtCvIXgZY0LwiRoMgiTfrpX7pK1HFA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="icon" href="\image\icon.webp">
   </head>
 <body> 
   <!-- 상단 네비게이션바 -->
@@ -24,8 +25,9 @@
 </div>
 <main>
 <!-- 상단 이미지 -->
-<div class="top image">
-  <img src="css/img_mainTop.jpg" class="m-hide" alt="">
+<div class="topimagearea">
+  <img src="image/top_image.png" class="m-hide" alt="top image">
+  <img src="image/top_imageM.png" class="p-hide" alt="top imageM">
 </div>
 <!-- 상단 대쉬보드 -->
 <div class="top-container"> 
@@ -144,7 +146,7 @@ var lineChart = new Chart(ctx, {
                           'rgba(255, 206, 86, 0.8)',
                           'rgba(75, 220, 192, 0.8)'
                       ],
-    }]
+     }]
     },
     options: {
       responsive: true,
