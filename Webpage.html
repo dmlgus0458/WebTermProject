@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>example</title>
+    <title>JobBoard</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.12/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="css\Web.css">
@@ -12,17 +12,17 @@
   <body> 
 <div class="site-header sticky-top py-1">
   <nav class="container d-flex flex-column flex-md-row justify-content-between">
-    <a class="py-2" href="#" aria-label="Product">
+    <a class="py-2" href="#" aria-label="header">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto" role="img" viewBox="0 0 24 24"><title>Product</title><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/></svg>
     </a>
-    <a class="py-2 d-none d-md-inline-block" href="#header" id="scroll_move">Tour</a>
-    <a class="py-2 d-none d-md-inline-block" href="#line">Product</a>
-    <a class="py-2 d-none d-md-inline-block" href="#bar">Features</a>
-    <a class="py-2 d-none d-md-inline-block" href="#">Enterprise</a>
+    <a class="py-2 d-none d-md-inline-block" href="#header" id="scroll_move">전체 현황</a>
+    <a class="py-2 d-none d-md-inline-block" href="#line">취업률 현황</a>
+    <a class="py-2 d-none d-md-inline-block" href="#bar">주요학과 현황</a>
+    <a class="py-2 d-none d-md-inline-block" href="#info">정보</a>
   </nav>
 </div>
 <main>
-  <!-- 상단 이미지 -->
+<!-- 상단 이미지 -->
 <div class="top image">
   <img src="css/img_mainTop.jpg" class="m-hide" alt="">
 </div>
@@ -78,11 +78,9 @@
 </div>
 <!-- 그래프1 -->
         <div class="chart-outline">
-          <div class="bg-light me-md-3 pt- px-3 pt-md-5 px-md-5 text-center" id="line">
-            <div class="my-3 py-3">
+          <div class="me-md-3 pt- px-3 pt-md-5 px-md-5 text-center " id="line">
               <h2 class="status">취업율 현황</h2>
-              <p class="lead">총 졸업자: 543,421명,	총 취업자: 360,713명	총 취업률 평균: 66.37%</p>
-            </div>
+              <p class="stxt">총 졸업자: 543,421명,	총 취업자: 360,713명	총 취업률 평균: 66.37%</p>
           </div>
           <div class="col-md-12 pr-md-5" style="position: relative; height:60vh; width:60vw">
             <canvas id="lineChart"></canvas>
@@ -121,16 +119,17 @@
             }
         });
         </script>
-   
-    <div class="bg-light pt-md-5 px-md-5 text-center" id="bar">
-        <h2 class="display-5">주요학과 취업률</h2>
-        <p class="lead">* 취업률 계산 = (취업자수/(졸업자수-기타요인))</p>
-        <div class="chart-outline">
-            <div style="position: relative; height:60vh; width:60vw">
+  <!-- 그래프2 -->
+          <div class="chart-outline">
+    <div class="pt-md-5 px-md-5 text-center" id="bar">
+        <h2 class="status">주요학과 취업률</h2>
+        <p class="stxt">* 취업률 계산 = (취업자수/(졸업자수-기타요인))</p>
+            <div class="col-md-12 pr-md-5" style="position: relative; height:60vh; width:60vw">
               <canvas id="myChart"></canvas>
             </div>
         </div>
     </div>
+  </div>
           <script>
           var ctx = document.getElementById("myChart").getContext('2d');
           var myChart = new Chart(ctx, {
@@ -182,7 +181,8 @@
               }
           });
           </script>
-  <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+  <!-- info -->
+  <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3" id="info">
     <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
       <div class="my-3 p-3">
         <h2 class="display-5">Another headline</h2>
@@ -199,6 +199,7 @@
     </div>
   </div>
 </main>
+<!-- footer -->
 <div class="container">
   <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
     <div class="col-md-4 d-flex align-items-center">
